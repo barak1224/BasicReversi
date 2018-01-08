@@ -10,6 +10,8 @@ public class Board {
     public Board(int newSize, Printer newPrinter, CellColor color1, CellColor color2) {
         matrix = new Cell[newSize][newSize];
         counter = new CellCounter(color1, color2);
+        size = newSize;
+        printer = newPrinter;
         initialize(color1, color2, counter);
     }
 
@@ -31,7 +33,7 @@ public class Board {
     }
 
     public Cell getCell(int row, int col) {
-        return matrix[row][col];
+        return matrix[row-1][col-1];
     }
 
     public Cell getCell(Coordinate coor) {

@@ -32,7 +32,13 @@ public class Cell {
     }
 
     public String toString() {
-        return position.toString();
+        if (content == CellColor.BLACK) {
+            return "X";
+        } else if (content == CellColor.WHITE) {
+            return "O";
+        } else {
+            return " ";
+        }
     }
 
     public boolean isEmpty() {

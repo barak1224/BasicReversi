@@ -18,7 +18,7 @@ public class ConsolePrinter implements Printer {
                 } else if (col == 0) {
                     System.out.print(row + "|");
                 } else {
-                    System.out.print(matrix[row - 1][col - 1].toString());
+                    System.out.print(" " + matrix[row - 1][col - 1].toString() + " |");
                 }
             }
             System.out.println();

@@ -8,7 +8,8 @@ public class GameFlow {
     private Printer printer;
     private TurnManager turnManager;
 
-    public GameFlow(int size, Printer printer, int typeOfGame) {
+    public GameFlow(int size, Printer newPrinter, int typeOfGame) {
+        printer = newPrinter;
         players = new Player[2];
         CellColor color1, color2;
         if ( typeOfGame == 0) {

@@ -3,8 +3,11 @@ public class CellCounter {
     private int[] points;
 
     public CellCounter(CellColor player1Color, CellColor player2Color) {
+        points = new int[2];
         player1 = player1Color;
         player2 = player2Color;
+        points[0] = 2;
+        points[1] = 2;
     }
 
     public CellCounter(CellColor player1Color, CellColor player2Color, int pointsP1, int pointsP2) {
