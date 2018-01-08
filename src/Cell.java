@@ -12,7 +12,7 @@ public class Cell {
         position = pos;
         neighbours = myNeighbours;
         counter = newCounter;
-        //TODO define color maybe?
+        content = CellColor.EMPTY;
     }
 
     public CellColor getContent() {

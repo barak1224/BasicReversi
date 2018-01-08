@@ -18,9 +18,8 @@ public class Player {
         Move move = null;
         do {
             showPossibleMoves(possibleMoves);
-            printer.printStream("Please enter your move row,col: ");
+            printer.printStream("Please enter your move row col: ");
             row = reader.nextInt();
-            comma = (char) reader.nextByte();
             col = reader.nextInt();
             checkInput(row, col);
             int maxSize = possibleMoves.size();

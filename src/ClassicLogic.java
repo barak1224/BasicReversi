@@ -13,10 +13,8 @@ public class ClassicLogic {
         List<Coordinate> neighbours = cell.getNeighbours();
         for (int i = 0; i < neighbours.size(); i++) {
             Coordinate dir = cell.getPosition().getDirectionTo(neighbours.get(i));
-            int maybe = 0;
             Cell nextCell = board.getCell(pos.sum(dir));
             if (player.isOpponent(nextCell.getContent())) {
-                maybe += 1;
                 if (validDirection(nextCell.getPosition(), player, dir, board)) {
                     result.add(dir);
                 }
