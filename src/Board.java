@@ -7,10 +7,10 @@ public class Board {
     CellCounter counter;
     Printer printer;
 
-    public Board(int newSize, Printer newPrinter) {
+    public Board(int newSize, Printer newPrinter, CellColor color1, CellColor color2) {
         matrix = new Cell[newSize][newSize];
-        counter = new CellCounter(CellColor.BLACK, CellColor.WHITE);
-        initialize(CellColor.BLACK, CellColor.WHITE, counter);
+        counter = new CellCounter(color1, color2);
+        initialize(color1, color2, counter);
     }
 
     private void initialize(CellColor color1, CellColor color2, CellCounter myCounter) {
@@ -27,7 +27,7 @@ public class Board {
     }
 
     public void print() {
-        printer.printBoard(matrix, size, counter.getPoints1(), counter.getPoints2());
+        printer.printBoard(matrix, size, counter.getPoints(1), counter.getPoints(2));
     }
 
     public Cell getCell(int row, int col) {
@@ -80,5 +80,13 @@ public class Board {
             player.conquerCell(next);
             flipGains(next.getPosition(), player, direction);
         }
+    }
+
+    public int getWinner() {
+        return counter.getWinner();
+    }
+
+    public int getPlayerPoints(int numOfPlayer) {
+        return counter.getPoints(numOfPlayer);
     }
 }
