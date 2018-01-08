@@ -51,7 +51,13 @@ public class Board {
     }
 
     public void applyMove(Move myMove, Player player) {
-        //TODO
+        Coordinate pos = myMove.getCoordinate();
+        player.conquerCell(getCell(pos));
+        List<Coordinate> directions = myMove.getDirections();
+        for (int i = 0; i < directions.size(); i++) {
+            Coordinate dir = directions.get(i);
+            flipGains(pos, player, dir);
+        }
     }
 
     public boolean gameOver() {

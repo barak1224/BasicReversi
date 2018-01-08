@@ -31,6 +31,6 @@ public class ConsolePrinter implements Printer {
 
     @Override
     public void printStream(String output) {
-        System.out.println(output);
+        System.out.print(output);
     }
 }
