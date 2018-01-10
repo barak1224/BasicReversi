@@ -15,7 +15,7 @@ public class Coordinate {
     }
 
     public String toString() {
-        String result = Integer.toString(row) + ", " + Integer.toString(col);
+        String result = "(" + Integer.toString(row) + "," + Integer.toString(col) + ")";
         return result;
     }
 
