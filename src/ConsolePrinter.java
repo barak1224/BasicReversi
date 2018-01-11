@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class ConsolePrinter implements Printer {
 
     @Override
@@ -32,5 +34,13 @@ public class ConsolePrinter implements Printer {
     @Override
     public void printStream(String output) {
         System.out.print(output);
+    }
+
+    public int[] getInput() {
+        Scanner reader = new Scanner(System.in);
+        int[] result = new int[2];
+        result[0] = reader.nextInt();
+        result[1] = reader.nextInt();
+        return result;
     }
 }

@@ -8,18 +8,12 @@ public class GameFlow {
     private Printer printer;
     private TurnManager turnManager;
 
-    public GameFlow(int size, Printer newPrinter, int typeOfGame) {
+    public GameFlow(int size, Printer newPrinter) {
         printer = newPrinter;
         players = new Player[2];
-        CellColor color1, color2;
-        if ( typeOfGame == 0) {
-            color1 = CellColor.BLACK;
-            color2 = CellColor.WHITE;
-        } else {
-            color1 = CellColor.WHITE;
-            color2 = CellColor.BLACK;
-        }
-        board = new Board(size, printer, color1, color2);
+        CellColor color1 = CellColor.BLACK;
+        CellColor color2 = CellColor.WHITE;
+        board = new Board(size, printer);
         logic = new ClassicLogic();
         players[0] = new Player(color1, printer);
         players[1] = new Player(color2, printer);
@@ -40,7 +34,7 @@ public class GameFlow {
     }
 
     public void run() {
-        while(!gameOver()) {
+        while (!gameOver()) {
             playOneTurn();
         }
         finishGame();

@@ -2,10 +2,10 @@ public class CellCounter {
     private CellColor player1, player2;
     private int[] points;
 
-    public CellCounter(CellColor player1Color, CellColor player2Color) {
+    public CellCounter() {
         points = new int[2];
-        player1 = player1Color;
-        player2 = player2Color;
+        player1 = CellColor.BLACK;
+        player2 = CellColor.WHITE;
         points[0] = 2;
         points[1] = 2;
     }

@@ -1,5 +1,3 @@
-package sample;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -10,111 +8,112 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class GUIPrinter {
+public class GUIPrinter implements Printer {
 
     private static Stage window;
-    private Scene scene1, scene2;
     private GridPane grid;
+    private Color player1Color, player2Color;
+    private boolean inTurn;
+    private int[] input;
+//    private GameFlow gameFlow;
 
-    public GUIPrinter() {
+
+    public GUIPrinter(Stage stage, Color player1, Color player2) {
         window = new Stage();
+        player1Color = player1;
+        player2Color = player2;
+        inTurn = false;
+        input = new int[2];
+        input[0] = 0;
+        input[1] = 0;
     }
-
-    public void print() {
-        window.setTitle("Continue testing");
-
-        grid = new GridPane();
-        grid.setGridLinesVisible(true);
-
-        int numRows = 8;
-        int numCols = 8;
-        int row, col;
-
-        for (row = 0; row < numRows; row++) {
-            RowConstraints rowConstraints = new RowConstraints();
-            rowConstraints.setVgrow(Priority.SOMETIMES);
-            grid.getRowConstraints().add(rowConstraints);
-        }
-
-        for (col = 0; col < numCols; col++) {
-            ColumnConstraints columnConstraints = new ColumnConstraints();
-            columnConstraints.setHgrow(Priority.SOMETIMES);
-            grid.getColumnConstraints().add(columnConstraints);
-        }
-
-        for (row = 0; row < numRows; row++) {
-            for (col = 0; col < 8; col++) {
-                addPane(row, col);
-            }
-        }
-
-        HBox menu = new HBox();
-        Label points = new Label("Points");
-
-
-
-        Scene scene = new Scene(grid, 400, 400);
-        window.setScene(scene);
-        window.setTitle("Testing things");
-        window.show();
-    }
-
-
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        window = primaryStage;
+    public void printBoard(Cell[][] matrix, int size, int points1, int points2) {
         window.setTitle("Continue testing");
 
         grid = new GridPane();
         grid.setGridLinesVisible(true);
 
-        int numRows = 8;
-        int numCols = 8;
         int row, col;
 
-        for (row = 0; row < numRows; row++) {
+        for (row = 0; row < size; row++) {
             RowConstraints rowConstraints = new RowConstraints();
             rowConstraints.setVgrow(Priority.SOMETIMES);
             grid.getRowConstraints().add(rowConstraints);
         }
 
-        for (col = 0; col < numCols; col++) {
+        for (col = 0; col < size; col++) {
             ColumnConstraints columnConstraints = new ColumnConstraints();
             columnConstraints.setHgrow(Priority.SOMETIMES);
             grid.getColumnConstraints().add(columnConstraints);
         }
 
-        for (row = 0; row < numRows; row++) {
-            for (col = 0; col < 8; col++) {
+        for (row = 0; row < size; row++) {
+            for (col = 0; col < size; col++) {
                 addPane(row, col);
             }
         }
 
         HBox menu = new HBox();
-        Label points = new Label("Points");
+        menu.setPrefWidth(100);
+
+        HBox leftBorder = new HBox();
+        leftBorder.setPrefWidth(10);
+
+        VBox topBorder = new VBox();
+        topBorder.setPrefHeight(10);
+
+        VBox bottomBorder = new VBox();
+        bottomBorder.setPrefHeight(10);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setCenter(grid);
+        borderPane.setRight(menu);
+        borderPane.setTop(topBorder);
+        borderPane.setLeft(leftBorder);
+        borderPane.setBottom(bottomBorder);
 
 
 
-        Scene scene = new Scene(grid, 400, 400);
+        Scene scene = new Scene(borderPane, 400, 400);
         window.setScene(scene);
         window.setTitle("Testing things");
         window.show();
-    }
-
-
-    public static void main(String[] args) {
-        launch(args);
     }
 
     private void addPane(int row, int col) {
-        Pane pane = new Pane();
+        StackPane pane = new StackPane();
+        
         pane.setOnMouseClicked(e -> {
-            System.out.printf("You picked cell (%d, %d)\n", row+1, col+1);
+            if (inTurn) {
+                input[0] = row + 1;
+                input[1] = col+ 1;
+                System.out.printf("(%d, %d)\n", row+1, col+1);
+            }
         });
         grid.add(pane, col, row);
+    }
 
+
+    @Override
+    public void printStream(String output) {
+        System.out.println(output);
+    }
+
+    public void setInTurn(boolean inTurn) {
+        this.inTurn = inTurn;
+    }
+
+    public int[] getInput() {
+        input[0] = 0;
+        input[1] = 0;
+        while (input[0] == 0 || input[1] == 0 ) {
+            //do nothing
+        }
+        return input;
     }
 }

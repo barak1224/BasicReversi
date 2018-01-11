@@ -1,4 +1,4 @@
 Who starts:WHITE
-Player one color:0x331a80ff
-Player two color:0xcccc33ff
+Player one color:0xe64d4dff
+Player two color:0x000000ff
 Size board:14
