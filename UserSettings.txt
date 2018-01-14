@@ -1,4 +1,4 @@
-Who starts:WHITE
-Player one color:0x331a80ff
-Player two color:0xcccc33ff
-Size board:14
+Who starts:BLACK
+Player one color:0x000000ff
+Player two color:0x4d1a4dff
+Size board:12

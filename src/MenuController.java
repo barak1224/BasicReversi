@@ -18,6 +18,9 @@ public class MenuController {
     private Button settingsButton;
 
     @FXML
+    private Button exitButton;
+
+    @FXML
     protected void runGame() {
 
     }
@@ -33,5 +36,10 @@ public class MenuController {
         } catch (IOException e) {
             System.out.println("Failed to open Settings");
         }
+    }
+
+    @FXML
+    protected void exit() {
+        System.exit(0);
     }
 }
