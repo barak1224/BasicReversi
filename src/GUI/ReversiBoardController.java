@@ -34,6 +34,12 @@ public class ReversiBoardController extends GridPane {
         }
     }
 
+
+    public void setPossibleMoves(List<Move> possibleMoves) {
+        System.out.println("Yayy");
+        this.possibleMoves = possibleMoves;
+    }
+
     public void draw() {
         this.getChildren().clear();
         int row, col, size = board.getSize(), posRow, posCol;
@@ -52,10 +58,17 @@ public class ReversiBoardController extends GridPane {
                 Cell cell = board.getCell(row+1, col+1);
                 CellColor cellContent = cell.getContent();
 
+                StackPane pane = new StackPane();
+                int finalRow = row;
+                int finalCol = col;
+                pane.setOnMouseClicked(e -> {
+                    System.out.printf("(%d, %d)", finalRow, finalCol);
+                });
                 if (cellContent == CellColor.EMPTY) {
                     Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0,153,0));
                     cellDrawing.setStroke(Color.BLACK);
-                    this.add(cellDrawing, row, col);
+                    pane.getChildren().add(cellDrawing);
+                    this.add(pane, row, col);
                 } else {
                     // get the color of the cell
                     if (cellContent == CellColor.BLACK) {
@@ -64,7 +77,6 @@ public class ReversiBoardController extends GridPane {
                         currentColor = this.colorP2;
                     }
                     // insert a stackpane to draw the circle centered
-                    StackPane pane = new StackPane();
                     Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0,153,0));
                     cellDrawing.setStroke(Color.BLACK);
                     Circle token = new Circle();
@@ -86,11 +98,11 @@ public class ReversiBoardController extends GridPane {
             Pane possPane = new Pane();
             Rectangle possiblePos = new Rectangle(colWidth, rowHeight, Color.rgb(0, 255, 0));
             possPane.getChildren().add(possiblePos);
+            possPane.setOnMouseClicked( e -> {
+                System.out.printf("%s", pos.toString());
+            });
             this.add(possPane, posRow, posCol);
         }
     }
 
-    private void addPossibleMoves() {
-
-    }
 }

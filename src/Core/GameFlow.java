@@ -1,6 +1,7 @@
 package Core;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameFlow {
     private Board board;
@@ -8,6 +9,7 @@ public class GameFlow {
     private Player[] players;
     private Printer printer;
     private TurnManager turnManager;
+    private Player currentPlayer;
 
     public GameFlow(int size) {
         players = new Player[2];
@@ -18,11 +20,11 @@ public class GameFlow {
         players[0] = new Player(color1);
         players[1] = new Player(color2);
         turnManager = new TurnManager(players);
+        currentPlayer = turnManager.nextPlayer();
     }
 
-    private void playOneTurn() {
-        Player currentPlayer = turnManager.nextPlayer();
-        ArrayList<Move> possibleMoves = logic.getPossibleMoves(currentPlayer, board);
+    public void playOneTurn() {
+        ArrayList<Move> possibleMoves = getPossibleMoves();
         Move move = currentPlayer.move(possibleMoves);
         if (move != null) {
             turnManager.setNoMove(false);
@@ -30,6 +32,7 @@ public class GameFlow {
         } else {
             turnManager.setNoMove(true);
         }
+        currentPlayer = turnManager.nextPlayer();
     }
 
     public void run() {
@@ -58,4 +61,8 @@ public class GameFlow {
     }
 
     public Board getBoard() { return this.board;}
+
+    public ArrayList<Move> getPossibleMoves() {
+        return logic.getPossibleMoves(currentPlayer, board);
+    }
 }
