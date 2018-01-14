@@ -10,8 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.control.ToggleGroup?>
+
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SettingsController">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
     <fx:define>
@@ -21,19 +22,19 @@
 
     <Label text="Which player starts:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <Label text="Player one color:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <Label text="First player color:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-    <Label text="Player two color:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <Label text="Second player color:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
-    <Label text="Board size:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+    <Label text="Core.Board size:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 
     <HBox alignment="bottom_right" GridPane.columnIndex="1" GridPane.rowIndex="6">
         <Button fx:id="doneButton" onAction="#signIn" text="Done" />
     </HBox>
     <Text fx:id="messageText2" GridPane.columnIndex="0" GridPane.rowIndex="7" />
 
-    <RadioButton fx:id="playerOneFirst" text = "Player 1" toggleGroup= "$players" selected="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    <RadioButton fx:id= "playerTwoFirst" text = "Player 2" toggleGroup= "$players" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <RadioButton fx:id="playerOneFirst" text = "Core.Player 1" toggleGroup= "$players" selected="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <RadioButton fx:id="playerTwoFirst" text = "Core.Player 2" toggleGroup= "$players" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     <ColorPicker fx:id="playerOneColor" prefHeight="26.0" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    <ColorPicker fx:id="playerTwoColor" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />

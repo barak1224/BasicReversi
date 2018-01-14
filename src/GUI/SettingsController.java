@@ -83,8 +83,8 @@ public class SettingsController {
             whoPlaysFirst = PlayerStart.WHITE.name();
         }
         lines.add("Who starts:" + whoPlaysFirst);
-        lines.add("Player one color:" + playerOneColor.getValue().toString());
-        lines.add("Player two color:" + playerTwoColor.getValue().toString());
+        lines.add("Core.Player one color:" + playerOneColor.getValue().toString());
+        lines.add("Core.Player two color:" + playerTwoColor.getValue().toString());
         lines.add("Size board:" + boardSizes.getValue());
         return lines;
     }

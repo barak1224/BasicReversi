@@ -28,7 +28,7 @@ public class MenuController {
         if (game != null) {
             Stage stage = (Stage) playButton.getScene().getWindow();
             GUIPrinter printer = new GUIPrinter(stage, game.getColorPlayerOne(), game.getColorPlayerTwo());
-//            GameFlow gameFlow = new GameFlow(8, printer);
+//            Core.GameFlow gameFlow = new Core.GameFlow(8, printer);
 //            gameFlow.run();
             Board board = new Board(8, printer);
             board.print();
