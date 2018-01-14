@@ -51,7 +51,7 @@ public class GameFlow {
             int points2 = board.getPlayerPoints(2);
             int maxPoint = Math.max(points1, points2);
             int minPoint = Math.min(points1, points2);
-            printer.printStream("Core.Player " + winner + " has won with a score of " +
+            printer.printStream("Player " + winner + " has won with a score of " +
                     maxPoint + " against " + minPoint + "\n");
         }
     }

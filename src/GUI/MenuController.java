@@ -25,7 +25,7 @@ public class MenuController {
             try {
                 Stage stage = (Stage) settingsButton.getScene().getWindow();
                 HBox root = (HBox) FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
-                Scene scene = new Scene(root, 400, 500);
+                Scene scene = new Scene(root, 600, 500);
                 stage.setScene((scene));
                 stage.show();
             } catch (IOException e) {

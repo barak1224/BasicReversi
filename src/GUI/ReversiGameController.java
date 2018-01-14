@@ -26,14 +26,11 @@ public class ReversiGameController implements Initializable {
         GameFlow gameFlow = new GameFlow(game.getSizeBoard());
         boardController = new ReversiBoardController(gameFlow.getBoard(),
                 game.getColorPlayerOne(), game.getColorPlayerTwo());
-        boardController.setPrefWidth(600);
+        boardController.setPrefWidth(800);
         boardController.setPrefHeight(400);
         root.getChildren().add(0, boardController);
-        System.out.println("barak is my bitch1");
         ArrayList<Move> possibleMoves = gameFlow.getPossibleMoves();
-        System.out.println("barak is my bitch2");
         boardController.setPossibleMoves(possibleMoves);
-        System.out.println("barak is my bitch3");
         boardController.draw();
         // listeners...
         root.widthProperty().addListener((observable, oldValue, newValue) -> {

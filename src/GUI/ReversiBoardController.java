@@ -36,7 +36,6 @@ public class ReversiBoardController extends GridPane {
 
 
     public void setPossibleMoves(List<Move> possibleMoves) {
-        System.out.println("Yayy");
         this.possibleMoves = possibleMoves;
     }
 
@@ -57,13 +56,7 @@ public class ReversiBoardController extends GridPane {
             for (col = 0; col < size; col++) {
                 Cell cell = board.getCell(row+1, col+1);
                 CellColor cellContent = cell.getContent();
-
                 StackPane pane = new StackPane();
-                int finalRow = row;
-                int finalCol = col;
-                pane.setOnMouseClicked(e -> {
-                    System.out.printf("(%d, %d)", finalRow, finalCol);
-                });
                 if (cellContent == CellColor.EMPTY) {
                     Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0,153,0));
                     cellDrawing.setStroke(Color.BLACK);
@@ -96,11 +89,11 @@ public class ReversiBoardController extends GridPane {
             posCol = pos.getCol() - 1;
 
             Pane possPane = new Pane();
+            possPane.setOnMouseClicked(e -> {
+                System.out.println(pos.toString());
+            });
             Rectangle possiblePos = new Rectangle(colWidth, rowHeight, Color.rgb(0, 255, 0));
             possPane.getChildren().add(possiblePos);
-            possPane.setOnMouseClicked( e -> {
-                System.out.printf("%s", pos.toString());
-            });
             this.add(possPane, posRow, posCol);
         }
     }
