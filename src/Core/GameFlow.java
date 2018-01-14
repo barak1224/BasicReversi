@@ -14,7 +14,7 @@ public class GameFlow {
         players = new Player[2];
         CellColor color1 = CellColor.BLACK;
         CellColor color2 = CellColor.WHITE;
-        board = new Board(size, printer);
+        board = new Board(size);
         logic = new ClassicLogic();
         players[0] = new Player(color1, printer);
         players[1] = new Player(color2, printer);
@@ -22,7 +22,6 @@ public class GameFlow {
     }
 
     private void playOneTurn() {
-        board.print();
         Player currentPlayer = turnManager.nextPlayer();
         ArrayList<Move> possibleMoves = logic.getPossibleMoves(currentPlayer, board);
         Move move = currentPlayer.move(possibleMoves);
@@ -42,7 +41,6 @@ public class GameFlow {
     }
 
     private void finishGame() {
-        board.print();
         int winner = board.getWinner();
         if (0 == winner) {
             printer.printStream("It's a tie!!\n");
@@ -59,10 +57,4 @@ public class GameFlow {
     private boolean gameOver() {
         return (board.gameOver() || turnManager.noMoreMoves());
     }
-//
-//    private void runMenu() {
-//
-//    }
-
-
 }

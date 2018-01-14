@@ -22,9 +22,9 @@
 
     <Label text="Which player starts:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <Label text="First player color:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <Label text="Player 1 color:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-    <Label text="Second player color:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <Label text="Player 2 color:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
     <Label text="Core.Board size:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 

@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,12 +24,15 @@ public class MenuController {
     protected void runGame() {
         GameSettings game = IOSettings.read();
         if (game != null) {
-            Stage stage = (Stage) playButton.getScene().getWindow();
-            GUIPrinter printer = new GUIPrinter(stage, game.getColorPlayerOne(), game.getColorPlayerTwo());
-//            Core.GameFlow gameFlow = new Core.GameFlow(8, printer);
-//            gameFlow.run();
-            Board board = new Board(8, printer);
-            board.print();
+            try {
+                Stage stage = (Stage) settingsButton.getScene().getWindow();
+                HBox root = (HBox) FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
+                Scene scene = new Scene(root, 400, 500);
+                stage.setScene((scene));
+                stage.show();
+            } catch (IOException e) {
+                System.out.println("Failed to open game");
+            }
         }
     }
 
@@ -36,7 +40,7 @@ public class MenuController {
     protected void settings() {
         try {
             Stage stage = (Stage) settingsButton.getScene().getWindow();
-            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("GUI/SettingsFXML.fxml"));
+            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("SettingsFXML.fxml"));
             Scene scene = new Scene(root, 400, 500);
             stage.setScene((scene));
             stage.show();
