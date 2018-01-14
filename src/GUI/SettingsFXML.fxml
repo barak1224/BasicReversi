@@ -22,9 +22,9 @@
 
     <Label text="Which player starts:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <Label text="First player color:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <Label text="Player one color:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-    <Label text="Second player color:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <Label text="Player two color:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
     <Label text="Core.Board size:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 
@@ -33,8 +33,8 @@
     </HBox>
     <Text fx:id="messageText2" GridPane.columnIndex="0" GridPane.rowIndex="7" />
 
-    <RadioButton fx:id="playerOneFirst" text = "Core.Player 1" toggleGroup= "$players" selected="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    <RadioButton fx:id="playerTwoFirst" text = "Core.Player 2" toggleGroup= "$players" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <RadioButton fx:id="playerOneFirst" text = "Player 1" toggleGroup= "$players" selected="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <RadioButton fx:id="playerTwoFirst" text = "Player 2" toggleGroup= "$players" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     <ColorPicker fx:id="playerOneColor" prefHeight="26.0" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    <ColorPicker fx:id="playerTwoColor" prefHeight="26.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />

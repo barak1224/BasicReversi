@@ -92,7 +92,7 @@ public class SettingsController {
     protected void callMenuBack() {
         try {
             Stage stage = (Stage) doneButton.getScene().getWindow();
-            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("GUI/MenuFXML.fxml"));
+            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("MenuFXML.fxml"));
             Scene scene = new Scene(root, 400, 350);
             stage.setScene((scene));
             stage.show();

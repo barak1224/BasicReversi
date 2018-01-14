@@ -17,9 +17,6 @@
     <HBox alignment="bottom_right" GridPane.columnIndex="1" GridPane.rowIndex="5">
         <Button fx:id="settingsButton" onAction="#settings" prefHeight="26.0" prefWidth="114.0" text="Settings" />
     </HBox>
-    <HBox alignment="bottom_right" GridPane.columnIndex="1" GridPane.rowIndex="9">
-        <Button fx:id="exitButton" onAction="#exit" prefHeight="26.0" prefWidth="114.0" text="Exit" />
-    </HBox>
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />

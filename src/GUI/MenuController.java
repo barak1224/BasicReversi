@@ -20,9 +20,6 @@ public class MenuController {
     private Button settingsButton;
 
     @FXML
-    private Button exitButton;
-
-    @FXML
     protected void runGame() {
         GameSettings game = IOSettings.read();
         if (game != null) {
@@ -39,17 +36,12 @@ public class MenuController {
     protected void settings() {
         try {
             Stage stage = (Stage) settingsButton.getScene().getWindow();
-            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("GUI/SettingsFXML.fxml"));
+            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("SettingsFXML.fxml"));
             Scene scene = new Scene(root, 400, 500);
             stage.setScene((scene));
             stage.show();
         } catch (IOException e) {
             System.out.println("Failed to open Settings");
         }
-    }
-
-    @FXML
-    protected void exit() {
-        System.exit(0);
     }
 }
