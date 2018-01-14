@@ -1,6 +1,7 @@
 package GUI;
 
 import Core.Board;
+import Core.GameFlow;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
@@ -9,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ReversiGameController implements Initializable {
+    private ReversiBoardController boardController;
 
     @FXML
     private HBox root;
@@ -17,11 +19,16 @@ public class ReversiGameController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         GameSettings game = IOSettings.read();
-        ReversiBoardController board = new ReversiBoardController(new Board(game.getSizeBoard()),
+        GameFlow gameFlow = createGameFlow(game);
+        boardController = new ReversiBoardController(gameFlow.getBoard(),
                 game.getColorPlayerOne(), game.getColorPlayerTwo());
-        board.setPrefWidth(600);
-        board.setPrefHeight(400);
-        root.getChildren().add(0, board);
-        board.draw();
+        boardController.setPrefWidth(600);
+        boardController.setPrefHeight(400);
+        root.getChildren().add(0, boardController);
+        boardController.draw();
+    }
+
+    private GameFlow createGameFlow(GameSettings game) {
+        return new GameFlow(game.getSizeBoard());
     }
 }

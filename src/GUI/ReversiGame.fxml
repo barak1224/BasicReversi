@@ -5,11 +5,6 @@
 
 
 <?import javafx.scene.text.Text?>
-<HBox xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="GUI.ReversiGameController" fx:id="root" spacing="10">
-    <VBox spacing="10">
-        <Text>Score:</Text>
-        <Text>Player 1:</Text>
-        <Text>Player 2:</Text>
-    </VBox>
+<HBox fx:id="root" xmlns:fx="http://javafx.com/javafx/fxml/1" fx:controller="GUI.ReversiGameController">
+
 </HBox>

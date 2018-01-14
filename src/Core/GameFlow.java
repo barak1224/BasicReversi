@@ -9,15 +9,14 @@ public class GameFlow {
     private Printer printer;
     private TurnManager turnManager;
 
-    public GameFlow(int size, Printer newPrinter) {
-        printer = newPrinter;
+    public GameFlow(int size) {
         players = new Player[2];
         CellColor color1 = CellColor.BLACK;
         CellColor color2 = CellColor.WHITE;
         board = new Board(size);
         logic = new ClassicLogic();
-        players[0] = new Player(color1, printer);
-        players[1] = new Player(color2, printer);
+        players[0] = new Player(color1);
+        players[1] = new Player(color2);
         turnManager = new TurnManager(players);
     }
 
@@ -57,4 +56,6 @@ public class GameFlow {
     private boolean gameOver() {
         return (board.gameOver() || turnManager.noMoreMoves());
     }
+
+    public Board getBoard() { return this.board;}
 }

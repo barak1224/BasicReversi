@@ -22,8 +22,6 @@ public class MenuController {
 
     @FXML
     protected void runGame() {
-        GameSettings game = IOSettings.read();
-        if (game != null) {
             try {
                 Stage stage = (Stage) settingsButton.getScene().getWindow();
                 HBox root = (HBox) FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
@@ -34,18 +32,17 @@ public class MenuController {
                 System.out.println("Failed to open game");
             }
         }
-    }
 
-    @FXML
-    protected void settings() {
-        try {
-            Stage stage = (Stage) settingsButton.getScene().getWindow();
-            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("SettingsFXML.fxml"));
-            Scene scene = new Scene(root, 400, 500);
-            stage.setScene((scene));
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Failed to open Settings");
+        @FXML
+        protected void settings () {
+            try {
+                Stage stage = (Stage) settingsButton.getScene().getWindow();
+                GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("SettingsFXML.fxml"));
+                Scene scene = new Scene(root, 400, 500);
+                stage.setScene((scene));
+                stage.show();
+            } catch (IOException e) {
+                System.out.println("Failed to open Settings");
+            }
         }
     }
-}
