@@ -7,15 +7,17 @@ public class Board {
     CellCounter counter;
     Printer printer;
 
-    public Board(int newSize, Printer newPrinter, CellColor color1, CellColor color2) {
+    public Board(int newSize, Printer newPrinter) {
         matrix = new Cell[newSize][newSize];
-        counter = new CellCounter(color1, color2);
+        counter = new CellCounter();
         size = newSize;
         printer = newPrinter;
-        initialize(color1, color2, counter);
+        initialize(counter);
     }
 
-    private void initialize(CellColor color1, CellColor color2, CellCounter myCounter) {
+    private void initialize(CellCounter myCounter) {
+        CellColor color1 = CellColor.BLACK;
+        CellColor color2 = CellColor.WHITE;
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
                 matrix[row][col] = new Cell(new Coordinate(row + 1, col + 1), counter, getNeighbours(row, col));

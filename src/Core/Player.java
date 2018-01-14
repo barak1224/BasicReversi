@@ -11,22 +11,21 @@ public class Player {
     }
 
     public Move move(ArrayList<Move> possibleMoves) {
-        Scanner reader = new Scanner(System.in);
-        int row, col;
-        char comma;
+        int[] input = new int[2];
         boolean validMove = false;
         Move move = null;
         do {
             showPossibleMoves(possibleMoves);
             printer.printStream("Please enter your move row col: ");
-            row = reader.nextInt();
-            col = reader.nextInt();
-            checkInput(row, col);
+            input = getInput();
+            if (!checkInput(input[0], input[1])) {
+                continue;
+            }
             int maxSize = possibleMoves.size();
             for (int i = 0; i < maxSize; i++) {
                 Move moveToCheck = possibleMoves.get(i);
                 Coordinate checkPos = moveToCheck.getCoordinate();
-                if (checkPos.getRow() == row && checkPos.getCol() == col) {
+                if (checkPos.getRow() == input[0] && checkPos.getCol() == input[1]) {
                     move = moveToCheck;
                     validMove = true;
                     break;
@@ -47,8 +46,9 @@ public class Player {
 
     public void showPossibleMoves(ArrayList<Move> move) {
         String cont;
-        if (content == CellColor.BLACK) { cont = "X";}
-        else cont = "O";
+        if (content == CellColor.BLACK) {
+            cont = "X";
+        } else cont = "O";
         printer.printStream("You play with: " + cont + "\n" + "Your possible moves are ");
         int size = move.size();
         for (int i = 0; i < size; i++) {
@@ -65,7 +65,11 @@ public class Player {
         myCell.beConquered(content);
     }
 
-    private void checkInput(int row, int col) {
-        //???
+    private boolean checkInput(int row, int col) {
+        return !(row == 0 || col == 0);
+    }
+
+    private int[] getInput() {
+        return printer.getInput();
     }
 }

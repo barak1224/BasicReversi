@@ -1,3 +1,5 @@
+package GUI;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -24,9 +26,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
-            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("MenuFXML.fxml"));
+            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("GUI/MenuFXML.fxml"));
             Scene scene = new Scene(root,400,350);
-            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("GUI/application.css").toExternalForm());
             primaryStage.setTitle("Menu");
             primaryStage.setScene(scene);
             primaryStage.show();

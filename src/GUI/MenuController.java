@@ -1,7 +1,9 @@
-import javafx.application.Application;
+package GUI;
+
+import Core.Board;
+import Core.GUIPrinter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -37,7 +39,7 @@ public class MenuController {
     protected void settings() {
         try {
             Stage stage = (Stage) settingsButton.getScene().getWindow();
-            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("SettingsFXML.fxml"));
+            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("GUI/SettingsFXML.fxml"));
             Scene scene = new Scene(root, 400, 500);
             stage.setScene((scene));
             stage.show();
