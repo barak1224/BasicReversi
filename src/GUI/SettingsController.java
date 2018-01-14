@@ -1,5 +1,5 @@
-import com.sun.corba.se.impl.logging.IORSystemException;
-import com.sun.corba.se.spi.logging.CORBALogDomains;
+package GUI;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -83,8 +83,8 @@ public class SettingsController {
             whoPlaysFirst = PlayerStart.WHITE.name();
         }
         lines.add("Who starts:" + whoPlaysFirst);
-        lines.add("Player one color:" + playerOneColor.getValue().toString());
-        lines.add("Player two color:" + playerTwoColor.getValue().toString());
+        lines.add("Core.Player one color:" + playerOneColor.getValue().toString());
+        lines.add("Core.Player two color:" + playerTwoColor.getValue().toString());
         lines.add("Size board:" + boardSizes.getValue());
         return lines;
     }
@@ -92,7 +92,7 @@ public class SettingsController {
     protected void callMenuBack() {
         try {
             Stage stage = (Stage) doneButton.getScene().getWindow();
-            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("MenuFXML.fxml"));
+            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("GUI/MenuFXML.fxml"));
             Scene scene = new Scene(root, 400, 350);
             stage.setScene((scene));
             stage.show();

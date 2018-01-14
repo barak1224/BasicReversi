@@ -1,12 +1,13 @@
+package GUI;
+
 import javafx.scene.paint.Color;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class IOSettings {
-    private static final String PLAYER_ONE_COLOR = "Player one color";
-    private static final String PLAYER_TWO_COLOR = "Player two color";
+    private static final String PLAYER_ONE_COLOR = "Core.Player one color";
+    private static final String PLAYER_TWO_COLOR = "Core.Player two color";
     private static final String SIZE_BOARD = "Size board";
     private static final String WHO_STARTS = "Who starts";
     private static final String SEPERATOR = ":";
