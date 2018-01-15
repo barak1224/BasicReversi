@@ -1,20 +1,15 @@
 package GUI;
 
-import Core.Coordinate;
 import Core.GameFlow;
 import Core.Move;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 
 public class ReversiGameController implements Initializable, ActionListener {
@@ -31,10 +26,10 @@ public class ReversiGameController implements Initializable, ActionListener {
         GameFlow gameFlow = new GameFlow(game.getSizeBoard());
         boardController = new ReversiBoardController(gameFlow.getBoard(),
                 game.getColorPlayerOne(), game.getColorPlayerTwo());
+        boardController.addHitListener(this);
         boardController.setPrefWidth(800);
         boardController.setPrefHeight(400);
         root.getChildren().add(0, boardController);
-
         ArrayList<Move> possibleMoves = gameFlow.getPossibleMoves();
         boardController.setPossibleMoves(possibleMoves);
         boardController.draw();
@@ -52,13 +47,8 @@ public class ReversiGameController implements Initializable, ActionListener {
         });
     }
 
-    public void playOneTurn(String input) {
-        System.out.println(input);
-    }
-
     @Override
-    public void actionEvent(int row, int col) {
-        //TODO
-        // play the turn
+    public void hitEvent(int row, int col) {
+        System.out.println(row +","+col);
     }
 }

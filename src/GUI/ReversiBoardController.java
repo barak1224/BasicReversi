@@ -14,15 +14,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ReversiBoardController extends GridPane {
+public class ReversiBoardController extends GridPane implements ActionNotifier {
     private Board board;
     private List<Move> possibleMoves;
     private Color colorP1, colorP2;
-    private ReversiGameController reversiGameController;
+    List<ActionListener> actionListeners;
 
-    public ReversiBoardController(Board newBoard, Color color1, Color color2) {
+    public ReversiBoardController (Board newBoard, Color color1, Color color2) {
         board = newBoard;
         possibleMoves = new ArrayList<>();
+        actionListeners = new ArrayList<>();
         colorP1 = color1;
         colorP2 = color2;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReversiBoard.fxml"));
@@ -42,7 +43,6 @@ public class ReversiBoardController extends GridPane {
 
     public void draw() {
         this.getChildren().clear();
-
         int row, col, size = board.getSize(), posRow, posCol;
 
         double height = this.getPrefHeight();
@@ -56,14 +56,13 @@ public class ReversiBoardController extends GridPane {
 
         for (row = 0; row < size; row++) {
             for (col = 0; col < size; col++) {
-                // get the content of the current cell
-                CellColor cellContent = board.getCell(row + 1, col + 1).getContent();
-
+                Cell cell = board.getCell(row+1, col+1);
+                CellColor cellContent = cell.getContent();
                 StackPane pane = new StackPane();
-                Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0, 153, 0));
-                cellDrawing.setStroke(Color.BLACK);
-                pane.getChildren().add(cellDrawing);
                 if (cellContent == CellColor.EMPTY) {
+                    Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0,153,0));
+                    cellDrawing.setStroke(Color.BLACK);
+                    pane.getChildren().add(cellDrawing);
                     this.add(pane, row, col);
                 } else {
                     // get the color of the cell
@@ -73,15 +72,21 @@ public class ReversiBoardController extends GridPane {
                         currentColor = this.colorP2;
                     }
                     // insert a stackpane to draw the circle centered
+                    Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0,153,0));
+                    cellDrawing.setStroke(Color.BLACK);
                     Circle token = new Circle();
                     token.setRadius(radius);
                     token.setFill(currentColor);
                     token.setStroke(Color.BLACK);
-                    pane.getChildren().add(token);
+                    pane.getChildren().addAll(cellDrawing, token);
                     this.add(pane, row, col);
                 }
+                drawPossibleMoves(colWidth, rowHeight);
             }
         }
+    }
+    private void drawPossibleMoves(double colWidth, double rowHeight) {
+        int posRow,posCol;
         //paint the possible moves
         Iterator<Move> it = this.possibleMoves.iterator();
         while (it.hasNext()) {
@@ -91,11 +96,32 @@ public class ReversiBoardController extends GridPane {
 
             Pane possPane = new Pane();
             possPane.setOnMouseClicked(e -> {
-                System.out.println(pos.toString());
+                notifyHit(pos.getRow(), pos.getCol());
             });
             Rectangle possiblePos = new Rectangle(colWidth, rowHeight, Color.rgb(0, 255, 0));
             possPane.getChildren().add(possiblePos);
             this.add(possPane, posRow, posCol);
         }
+    }
+    /**
+     * Notify hit to the block.
+     */
+    private void notifyHit(int row, int col) {
+        // Make a copy of the hitListeners before iterating over them.
+        List<ActionListener> listeners = new ArrayList<ActionListener>(this.actionListeners);
+        // Notify all listeners about a hit event:
+        for (ActionListener hl : listeners) {
+            hl.hitEvent(row,col);
+        }
+    }
+
+    @Override
+    public void addHitListener(ActionListener hl) {
+        actionListeners.add(hl);
+    }
+
+    @Override
+    public void removeHitListener(ActionListener hl) {
+        actionListeners.remove(hl);
     }
 }
