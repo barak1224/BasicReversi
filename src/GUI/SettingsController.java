@@ -34,8 +34,10 @@ public class SettingsController {
         boardSizes.getItems().addAll(4,6,8,10,12,14,16,18,20);
         GameSettings game = IOSettings.read();
         if (game != null) {
+            String s = game.getWhoStarts().name();
+            String b = PlayerStart.BLACK.name();
             if (game.getWhoStarts().name().equals(PlayerStart.BLACK.name())) {
-                playerTwoFirst.setSelected(true);
+                playerOneFirst.setSelected(true);
             } else {
                 playerTwoFirst.setSelected(true);
             }
