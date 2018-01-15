@@ -35,7 +35,7 @@ public class SettingsController {
         GameSettings game = IOSettings.read();
         if (game != null) {
             if (game.getWhoStarts().name().equals(PlayerStart.BLACK.name())) {
-                playerTwoFirst.setSelected(true);
+                playerOneFirst.setSelected(true);
             } else {
                 playerTwoFirst.setSelected(true);
             }

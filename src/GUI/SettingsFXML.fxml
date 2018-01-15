@@ -29,16 +29,16 @@
 
     <Label text="Player 2 color:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
 
-    <Label text="Core.Board size:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+    <Label text="Board size:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
 
     <HBox alignment="bottom_right" GridPane.columnIndex="1" GridPane.rowIndex="6">
         <Button fx:id="doneButton" onAction="#signIn" text="Done"/>
     </HBox>
     <Text fx:id="messageText2" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
 
-    <RadioButton fx:id="playerOneFirst" text="Core.Player 1" toggleGroup="$players" selected="true"
+    <RadioButton fx:id="playerOneFirst" text="Player 1" toggleGroup="$players" selected="true"
                  GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-    <RadioButton fx:id="playerTwoFirst" text="Core.Player 2" toggleGroup="$players" GridPane.columnIndex="1"
+    <RadioButton fx:id="playerTwoFirst" text="Player 2" toggleGroup="$players" GridPane.columnIndex="1"
                  GridPane.rowIndex="2"/>
 
     <ColorPicker fx:id="playerOneColor" prefHeight="26.0" prefWidth="170.0" GridPane.columnIndex="1"

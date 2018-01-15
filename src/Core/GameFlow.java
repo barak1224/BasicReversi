@@ -23,46 +23,33 @@ public class GameFlow {
         currentPlayer = turnManager.nextPlayer();
     }
 
-    public void playOneTurn() {
+    public boolean playOneTurn(int row, int col) {
         ArrayList<Move> possibleMoves = getPossibleMoves();
-        Move move = currentPlayer.move(possibleMoves);
-        if (move != null) {
-            turnManager.setNoMove(false);
-            board.applyMove(move, currentPlayer);
-        } else {
+        Move move = currentPlayer.move(possibleMoves, row, col);
+        board.applyMove(move, currentPlayer);
+        turnManager.setNoMove(false);
+        // get the relevant data for the next turn
+        currentPlayer = nextPlayer();
+        if (getPossibleMoves().isEmpty()) {
             turnManager.setNoMove(true);
+            currentPlayer = nextPlayer();
         }
-        currentPlayer = turnManager.nextPlayer();
-    }
-
-    public void run() {
-        while (!gameOver()) {
-            playOneTurn();
-        }
-        finishGame();
-    }
-
-    private void finishGame() {
-        int winner = board.getWinner();
-        if (0 == winner) {
-            printer.printStream("It's a tie!!\n");
-        } else {
-            int points1 = board.getPlayerPoints(1);
-            int points2 = board.getPlayerPoints(2);
-            int maxPoint = Math.max(points1, points2);
-            int minPoint = Math.min(points1, points2);
-            printer.printStream("Player " + winner + " has won with a score of " +
-                    maxPoint + " against " + minPoint + "\n");
-        }
+        return !gameOver();
     }
 
     private boolean gameOver() {
         return (board.gameOver() || turnManager.noMoreMoves());
     }
 
-    public Board getBoard() { return this.board;}
+    public Board getBoard() {
+        return this.board;
+    }
 
     public ArrayList<Move> getPossibleMoves() {
         return logic.getPossibleMoves(currentPlayer, board);
+    }
+
+    private Player nextPlayer() {
+        return turnManager.nextPlayer();
     }
 }

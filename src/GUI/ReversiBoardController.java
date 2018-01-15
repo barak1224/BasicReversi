@@ -59,10 +59,10 @@ public class ReversiBoardController extends GridPane implements ActionNotifier {
                 Cell cell = board.getCell(row+1, col+1);
                 CellColor cellContent = cell.getContent();
                 StackPane pane = new StackPane();
+                Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0,153,0));
+                cellDrawing.setStroke(Color.BLACK);
+                pane.getChildren().add(cellDrawing);
                 if (cellContent == CellColor.EMPTY) {
-                    Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0,153,0));
-                    cellDrawing.setStroke(Color.BLACK);
-                    pane.getChildren().add(cellDrawing);
                     this.add(pane, row, col);
                 } else {
                     // get the color of the cell
@@ -72,13 +72,11 @@ public class ReversiBoardController extends GridPane implements ActionNotifier {
                         currentColor = this.colorP2;
                     }
                     // insert a stackpane to draw the circle centered
-                    Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0,153,0));
-                    cellDrawing.setStroke(Color.BLACK);
                     Circle token = new Circle();
                     token.setRadius(radius);
                     token.setFill(currentColor);
-                    token.setStroke(Color.BLACK);
-                    pane.getChildren().addAll(cellDrawing, token);
+//                    token.setStroke(Color.BLACK);
+                    pane.getChildren().addAll(token);
                     this.add(pane, row, col);
                 }
                 drawPossibleMoves(colWidth, rowHeight);

@@ -6,5 +6,5 @@
 
 <?import javafx.scene.text.Text?>
 <HBox fx:id="root" xmlns:fx="http://javafx.com/javafx/fxml/1" fx:controller="GUI.ReversiGameController">
-
+    <VBox> </VBox>
 </HBox>

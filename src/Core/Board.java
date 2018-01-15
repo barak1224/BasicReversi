@@ -7,18 +7,16 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board extends GridPane implements ActionNotifier {
+public class Board  {
     private int size;
     private Cell[][] matrix;
     private CellCounter counter;
-    private List<ActionListener> listeners;
 
 
     public Board(int newSize) {
         matrix = new Cell[newSize][newSize];
         counter = new CellCounter();
         size = newSize;
-        listeners = new ArrayList<>();
         initialize(counter);
     }
 
@@ -102,15 +100,4 @@ public class Board extends GridPane implements ActionNotifier {
     public int getPlayerPoints(int numOfPlayer) {
         return counter.getPoints(numOfPlayer);
     }
-
-    @Override
-    public void addActionListener(ActionListener l) {
-
-    }
-
-    @Override
-    public void removeActionListener(ActionListener l) {
-
-    }
-
 }
