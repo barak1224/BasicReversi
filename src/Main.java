@@ -20,6 +20,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
+            primaryStage.setMinWidth(SCREEN_WIDTH);
+            primaryStage.setMinHeight(SCREEN_HEIGHT);
             GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("GUI/MenuFXML.fxml"));
             Scene scene = new Scene(root,SCREEN_WIDTH,SCREEN_HEIGHT);
             scene.getStylesheets().add(getClass().getResource("GUI/application.css").toExternalForm());
