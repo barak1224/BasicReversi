@@ -68,6 +68,7 @@ public class ReversiGameController implements Initializable, ActionListener {
     }
 
 
+    @FXML
     private void callMenuBack() {
         try {
             Stage stage = (Stage) root.getScene().getWindow();
