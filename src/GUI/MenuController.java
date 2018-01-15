@@ -4,6 +4,7 @@ import Core.Board;
 import Core.GUIPrinter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -26,7 +27,7 @@ public class MenuController {
         if (game != null) {
             try {
                 Stage stage = (Stage) settingsButton.getScene().getWindow();
-                HBox root = (HBox) FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
                 Scene scene = new Scene(root, 400, 500);
                 stage.setScene((scene));
                 stage.show();
