@@ -9,32 +9,20 @@ public class Player {
         content = myContent;
     }
 
-    public Move move(ArrayList<Move> possibleMoves) {
+    public Move move(ArrayList<Move> possibleMoves, int row, int col) {
         int[] input = new int[2];
         boolean validMove = false;
         Move move = null;
-        do {
-            showPossibleMoves(possibleMoves);
-//            input = getInput();
-            if (!checkInput(input[0], input[1])) {
-                continue;
-            }
             int maxSize = possibleMoves.size();
             for (int i = 0; i < maxSize; i++) {
                 Move moveToCheck = possibleMoves.get(i);
                 Coordinate checkPos = moveToCheck.getCoordinate();
-                if (checkPos.getRow() == input[0] && checkPos.getCol() == input[1]) {
+                if (checkPos.getRow() == row && checkPos.getCol() == col) {
                     move = moveToCheck;
                     validMove = true;
                     break;
                 }
             }
-            if (!validMove) {
-                //printer.printStream("Wrong move, please try again.\n");
-            }
-        } while (!validMove);
-//        printer.printStream("You picked " + move.getCoordinateAsString() + "\n");
-//        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         return move;
     }
 

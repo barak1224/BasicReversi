@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 
 public class ReversiGameController implements Initializable, ActionListener {
     private ReversiBoardController boardController;
+    private GameFlow gameFlow;
 
     @FXML
     private HBox root;
@@ -23,15 +24,14 @@ public class ReversiGameController implements Initializable, ActionListener {
     public void initialize(URL location, ResourceBundle resources) {
         GameSettings game = IOSettings.read();
         if (game == null) return;
-        GameFlow gameFlow = new GameFlow(game.getSizeBoard());
+        gameFlow = new GameFlow(game.getSizeBoard());
         boardController = new ReversiBoardController(gameFlow.getBoard(),
                 game.getColorPlayerOne(), game.getColorPlayerTwo());
         boardController.addHitListener(this);
         boardController.setPrefWidth(800);
         boardController.setPrefHeight(400);
         root.getChildren().add(0, boardController);
-        ArrayList<Move> possibleMoves = gameFlow.getPossibleMoves();
-        boardController.setPossibleMoves(possibleMoves);
+        boardController.setPossibleMoves(gameFlow.getPossibleMoves());
         boardController.draw();
         // listeners...
         root.widthProperty().addListener((observable, oldValue, newValue) -> {
@@ -49,6 +49,14 @@ public class ReversiGameController implements Initializable, ActionListener {
 
     @Override
     public void hitEvent(int row, int col) {
-        System.out.println(row +","+col);
+        if (!gameFlow.playOneTurn(row, col)) {
+            gameOver();
+        }
+        boardController.setPossibleMoves(gameFlow.getPossibleMoves());
+        boardController.draw();
+    }
+
+    private void gameOver() {
+
     }
 }

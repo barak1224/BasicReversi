@@ -1,12 +1,17 @@
 package Core;
 
+import GUI.ActionNotifier;
+import javafx.scene.layout.GridPane;
+
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
+public class Board  {
     private int size;
     private Cell[][] matrix;
-    CellCounter counter;
+    private CellCounter counter;
+
 
     public Board(int newSize) {
         matrix = new Cell[newSize][newSize];
