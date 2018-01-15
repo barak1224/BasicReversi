@@ -21,6 +21,9 @@ public class MenuController {
     private Button settingsButton;
 
     @FXML
+    private Button quitButton;
+
+    @FXML
     protected void runGame() {
 
         try {
@@ -46,5 +49,12 @@ public class MenuController {
             System.out.println("Failed to open Settings");
         }
     }
+
+    @FXML
+    private void quit() {
+        Stage stage = (Stage) quitButton.getScene().getWindow();
+        stage.close();
+    }
+
 }
 
