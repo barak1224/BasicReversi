@@ -9,18 +9,6 @@ import javafx.stage.Stage;
 public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
-        GameSettings gameSettings = null;
-        try {
-            gameSettings = IOSettings.read();
-        } catch (Exception e) {
-            System.out.println("PROBLEM...");
-        }
-        if (gameSettings != null) {
-            System.out.println(gameSettings.getSizeBoard());
-            System.out.println(gameSettings.getColorPlayerOne().toString());
-            System.out.println(gameSettings.getColorPlayerTwo());
-            System.out.println(gameSettings.getWhoStarts());
-        }
     }
 
     @Override

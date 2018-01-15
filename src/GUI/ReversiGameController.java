@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ReversiGameController implements Initializable {
+public class ReversiGameController implements Initializable, ActionListener {
     private ReversiBoardController boardController;
 
     @FXML
@@ -26,6 +26,7 @@ public class ReversiGameController implements Initializable {
         GameFlow gameFlow = new GameFlow(game.getSizeBoard());
         boardController = new ReversiBoardController(gameFlow.getBoard(),
                 game.getColorPlayerOne(), game.getColorPlayerTwo());
+        boardController.addHitListener(this);
         boardController.setPrefWidth(800);
         boardController.setPrefHeight(400);
         root.getChildren().add(0, boardController);
@@ -44,5 +45,10 @@ public class ReversiGameController implements Initializable {
             boardController.setPrefHeight(newValue.doubleValue() - 40);
             boardController.draw();
         });
+    }
+
+    @Override
+    public void hitEvent(int row, int col) {
+        System.out.println(row +","+col);
     }
 }
