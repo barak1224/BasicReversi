@@ -72,7 +72,7 @@ public class ReversiGameController implements Initializable, ActionListener {
     private void gameOver() {
         GameOverBox gameOverBox = new GameOverBox();
         //TODO SET WHO WINS MESSAGE
-        gameOverBox.display("Winner winner", "Barak is a (and my) bitch");
+        gameOverBox.display("Winner winner", "You Won");
         callMenuBack();
     }
 

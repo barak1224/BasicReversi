@@ -7,8 +7,8 @@
 
 <HBox fx:id="root" spacing="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReversiGameController">
     <VBox spacing="10">
-        <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="318.0" prefWidth="49.0" text="Reversi" />show
-        <Button fx:id="menuButton" alignment="BASELINE_CENTER" onAction="#callMenuBack" prefHeight="0.0" prefWidth="176.0" text="Menu"/>
-        <Button fx:id="quitButton" alignment="BASELINE_CENTER" onAction="#quit" prefHeight="0.0" prefWidth="176.0" text="Quit" />
+        <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="318.0" prefWidth="49.0" text="Reversi" />
+        <Button fx:id="menuButton" alignment="CENTER" onAction="#callMenuBack" prefHeight="0.0" prefWidth="176.0" text="Menu"/>
+        <Button fx:id="quitButton" alignment="CENTER" onAction="#quit" prefHeight="0.0" prefWidth="176.0" text="Quit" />
     </VBox>
 </HBox>
