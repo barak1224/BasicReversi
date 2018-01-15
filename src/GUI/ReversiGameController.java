@@ -4,10 +4,15 @@ import Core.GameFlow;
 import Core.Move;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -49,14 +54,30 @@ public class ReversiGameController implements Initializable, ActionListener {
 
     @Override
     public void hitEvent(int row, int col) {
-        if (!gameFlow.playOneTurn(row, col)) {
-            gameOver();
-        }
+        boolean shouldContinue;
+        shouldContinue = gameFlow.playOneTurn(row, col);
         boardController.setPossibleMoves(gameFlow.getPossibleMoves());
         boardController.draw();
+        if (!shouldContinue) gameOver();
     }
 
     private void gameOver() {
-
+        GameOverBox gameOverBox = new GameOverBox();
+        gameOverBox.display("Winner winner", "Barak is a (and my) bitch");
+        callMenuBack();
     }
+
+
+    private void callMenuBack() {
+        try {
+            Stage stage = (Stage) root.getScene().getWindow();
+            GridPane newRoot = (GridPane) FXMLLoader.load(getClass().getResource("MenuFXML.fxml"));
+            Scene scene = new Scene(newRoot, root.getScene().getWidth(), root.getScene().getHeight());
+            stage.setScene((scene));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Failed to go back");
+        }
+    }
+
 }

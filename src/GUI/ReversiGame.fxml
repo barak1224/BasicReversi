@@ -5,6 +5,9 @@
 
 
 <?import javafx.scene.text.Text?>
-<HBox fx:id="root" xmlns:fx="http://javafx.com/javafx/fxml/1" fx:controller="GUI.ReversiGameController">
-    <VBox> </VBox>
+<?import javafx.scene.control.Label?>
+<HBox fx:id="root" spacing="10" xmlns:fx="http://javafx.com/javafx/fxml/1" fx:controller="GUI.ReversiGameController">
+    <VBox spacing="10">
+        <Label centerShape="true" alignment="CENTER" text="Reversi"/>
+    </VBox>
 </HBox>
