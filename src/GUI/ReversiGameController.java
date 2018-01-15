@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -18,11 +19,18 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ReversiGameController implements Initializable, ActionListener {
+
     private ReversiBoardController boardController;
     private GameFlow gameFlow;
 
     @FXML
     private HBox root;
+
+    @FXML
+    private Button menuButton;
+
+    @FXML
+    private Button quitButton;
 
 
     @Override
@@ -63,17 +71,17 @@ public class ReversiGameController implements Initializable, ActionListener {
 
     private void gameOver() {
         GameOverBox gameOverBox = new GameOverBox();
-        gameOverBox.display("Winner winner", "Barak is a (and my) bitch");
+        //TODO SET WHO WINS MESSAGE
+        gameOverBox.display("Winner winner", "You Won");
         callMenuBack();
     }
-
 
     @FXML
     private void callMenuBack() {
         try {
-            Stage stage = (Stage) root.getScene().getWindow();
+            Stage stage = (Stage) menuButton.getScene().getWindow();
             GridPane newRoot = (GridPane) FXMLLoader.load(getClass().getResource("MenuFXML.fxml"));
-            Scene scene = new Scene(newRoot, root.getScene().getWidth(), root.getScene().getHeight());
+            Scene scene = new Scene(newRoot, menuButton.getScene().getWidth(), menuButton.getScene().getHeight());
             stage.setScene((scene));
             stage.show();
         } catch (IOException e) {
@@ -81,4 +89,9 @@ public class ReversiGameController implements Initializable, ActionListener {
         }
     }
 
+    @FXML
+    private void quit() {
+        Stage stage = (Stage) quitButton.getScene().getWindow();
+        stage.close();
+    }
 }
