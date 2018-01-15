@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Text?>
-
-
-
-<?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.VBox?>
-<HBox alignment="center" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="GUI.ReversiGameController">
 
-    <VBox spacing="10">
-        <Text>Score:</Text>
-        <Text>Player 1:</Text>
-        <Text>Player 2:</Text>
-    </VBox>
+
+<?import javafx.scene.text.Text?>
+<HBox fx:id="root" xmlns:fx="http://javafx.com/javafx/fxml/1" fx:controller="GUI.ReversiGameController">
+
 </HBox>

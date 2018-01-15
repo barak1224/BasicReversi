@@ -4,11 +4,9 @@ import java.util.ArrayList;
 
 public class Player {
     private CellColor content;
-    private Printer printer;
 
-    public Player(CellColor myContent, Printer myPrinter) {
+    public Player(CellColor myContent) {
         content = myContent;
-        printer = myPrinter;
     }
 
     public Move move(ArrayList<Move> possibleMoves) {
@@ -17,8 +15,7 @@ public class Player {
         Move move = null;
         do {
             showPossibleMoves(possibleMoves);
-            printer.printStream("Please enter your move row col: ");
-            input = getInput();
+//            input = getInput();
             if (!checkInput(input[0], input[1])) {
                 continue;
             }
@@ -33,10 +30,10 @@ public class Player {
                 }
             }
             if (!validMove) {
-                printer.printStream("Wrong move, please try again.\n");
+                //printer.printStream("Wrong move, please try again.\n");
             }
         } while (!validMove);
-        printer.printStream("You picked " + move.getCoordinateAsString() + "\n");
+//        printer.printStream("You picked " + move.getCoordinateAsString() + "\n");
 //        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         return move;
     }
@@ -50,12 +47,12 @@ public class Player {
         if (content == CellColor.BLACK) {
             cont = "X";
         } else cont = "O";
-        printer.printStream("You play with: " + cont + "\n" + "Your possible moves are ");
+//        printer.printStream("You play with: " + cont + "\n" + "Your possible moves are ");
         int size = move.size();
         for (int i = 0; i < size; i++) {
-            printer.printStream(" " + move.get(i).getCoordinateAsString());
+//            printer.printStream(" " + move.get(i).getCoordinateAsString());
         }
-        printer.printStream("\n\n");
+//        printer.printStream("\n\n");
     }
 
     public CellColor getContent() {
@@ -70,7 +67,4 @@ public class Player {
         return !(row == 0 || col == 0);
     }
 
-    private int[] getInput() {
-        return printer.getInput();
-    }
 }
