@@ -7,13 +7,11 @@ public class Board {
     private int size;
     private Cell[][] matrix;
     CellCounter counter;
-    Printer printer;
 
-    public Board(int newSize, Printer newPrinter) {
+    public Board(int newSize) {
         matrix = new Cell[newSize][newSize];
         counter = new CellCounter();
         size = newSize;
-        printer = newPrinter;
         initialize(counter);
     }
 
@@ -30,10 +28,6 @@ public class Board {
         matrix[middle - 1][middle].setContent(color1);
         matrix[middle][middle].setContent(color2);
         matrix[middle - 1][middle - 1].setContent(color2);
-    }
-
-    public void print() {
-        printer.printBoard(matrix, size, counter.getPoints(1), counter.getPoints(2));
     }
 
     public Cell getCell(int row, int col) {
