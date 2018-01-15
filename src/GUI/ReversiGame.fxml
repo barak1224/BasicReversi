@@ -5,11 +5,9 @@
 
 
 <?import javafx.scene.text.Text?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<HBox fx:id="root" xmlns:fx="http://javafx.com/javafx/fxml/1" fx:controller="GUI.ReversiGameController">
-    <VBox>
-        <padding><Insets top="25" right="25" bottom="10" left="55"></Insets></padding>
-        <Label text="iosi is gay" ></Label>
+<HBox fx:id="root" spacing="10" xmlns:fx="http://javafx.com/javafx/fxml/1" fx:controller="GUI.ReversiGameController">
+    <VBox spacing="10">
+        <Label centerShape="true" alignment="CENTER" text="Reversi"/>
     </VBox>
 </HBox>

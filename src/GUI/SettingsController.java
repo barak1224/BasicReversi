@@ -95,7 +95,7 @@ public class SettingsController {
         try {
             Stage stage = (Stage) doneButton.getScene().getWindow();
             GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("MenuFXML.fxml"));
-            Scene scene = new Scene(root, 400, 350);
+            Scene scene = new Scene(root, doneButton.getScene().getWidth(), doneButton.getScene().getHeight());
             stage.setScene((scene));
             stage.show();
         } catch (IOException e) {

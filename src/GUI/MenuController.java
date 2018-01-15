@@ -22,27 +22,29 @@ public class MenuController {
 
     @FXML
     protected void runGame() {
-            try {
-                Stage stage = (Stage) settingsButton.getScene().getWindow();
-                HBox root = (HBox) FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
-                Scene scene = new Scene(root, 600, 500);
-                stage.setScene((scene));
-                stage.show();
-            } catch (IOException e) {
-                System.out.println("Failed to open game");
-            }
-        }
 
-        @FXML
-        protected void settings () {
-            try {
-                Stage stage = (Stage) settingsButton.getScene().getWindow();
-                GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("SettingsFXML.fxml"));
-                Scene scene = new Scene(root, 400, 500);
-                stage.setScene((scene));
-                stage.show();
-            } catch (IOException e) {
-                System.out.println("Failed to open Settings");
-            }
+        try {
+            Stage stage = (Stage) playButton.getScene().getWindow();
+            HBox root = (HBox) FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
+            Scene scene = new Scene(root, playButton.getScene().getWidth(), playButton.getScene().getHeight());
+            stage.setScene((scene));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Failed to open game");
         }
     }
+
+    @FXML
+    protected void settings() {
+        try {
+            Stage stage = (Stage) settingsButton.getScene().getWindow();
+            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("SettingsFXML.fxml"));
+            Scene scene = new Scene(root,  settingsButton.getScene().getWidth(), settingsButton.getScene().getHeight());
+            stage.setScene((scene));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Failed to open Settings");
+        }
+    }
+}
+
