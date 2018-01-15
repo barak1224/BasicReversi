@@ -18,8 +18,9 @@ public class ReversiBoardController extends GridPane {
     private Board board;
     private List<Move> possibleMoves;
     private Color colorP1, colorP2;
+    private ReversiGameController reversiGameController;
 
-    public ReversiBoardController (Board newBoard, Color color1, Color color2) {
+    public ReversiBoardController(Board newBoard, Color color1, Color color2) {
         board = newBoard;
         possibleMoves = new ArrayList<>();
         colorP1 = color1;
@@ -41,6 +42,7 @@ public class ReversiBoardController extends GridPane {
 
     public void draw() {
         this.getChildren().clear();
+
         int row, col, size = board.getSize(), posRow, posCol;
 
         double height = this.getPrefHeight();
@@ -54,13 +56,14 @@ public class ReversiBoardController extends GridPane {
 
         for (row = 0; row < size; row++) {
             for (col = 0; col < size; col++) {
-                Cell cell = board.getCell(row+1, col+1);
-                CellColor cellContent = cell.getContent();
+                // get the content of the current cell
+                CellColor cellContent = board.getCell(row + 1, col + 1).getContent();
+
                 StackPane pane = new StackPane();
+                Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0, 153, 0));
+                cellDrawing.setStroke(Color.BLACK);
+                pane.getChildren().add(cellDrawing);
                 if (cellContent == CellColor.EMPTY) {
-                    Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0,153,0));
-                    cellDrawing.setStroke(Color.BLACK);
-                    pane.getChildren().add(cellDrawing);
                     this.add(pane, row, col);
                 } else {
                     // get the color of the cell
@@ -70,13 +73,11 @@ public class ReversiBoardController extends GridPane {
                         currentColor = this.colorP2;
                     }
                     // insert a stackpane to draw the circle centered
-                    Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0,153,0));
-                    cellDrawing.setStroke(Color.BLACK);
                     Circle token = new Circle();
                     token.setRadius(radius);
                     token.setFill(currentColor);
                     token.setStroke(Color.BLACK);
-                    pane.getChildren().addAll(cellDrawing, token);
+                    pane.getChildren().add(token);
                     this.add(pane, row, col);
                 }
             }
@@ -97,5 +98,4 @@ public class ReversiBoardController extends GridPane {
             this.add(possPane, posRow, posCol);
         }
     }
-
 }
