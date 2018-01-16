@@ -59,7 +59,7 @@ public class ReversiBoardController extends GridPane implements ActionNotifier {
                 Cell cell = board.getCell(row+1, col+1);
                 CellColor cellContent = cell.getContent();
                 StackPane pane = new StackPane();
-                Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(0,153,0));
+                Rectangle cellDrawing = new Rectangle(colWidth, rowHeight, Color.rgb(130,130,130));
                 cellDrawing.setStroke(Color.BLACK);
                 pane.getChildren().add(cellDrawing);
                 if (cellContent == CellColor.EMPTY) {
@@ -96,7 +96,7 @@ public class ReversiBoardController extends GridPane implements ActionNotifier {
             possPane.setOnMouseClicked(e -> {
                 notifyHit(pos.getRow(), pos.getCol());
             });
-            Rectangle possiblePos = new Rectangle(colWidth, rowHeight, Color.rgb(0, 255, 0));
+            Rectangle possiblePos = new Rectangle(colWidth, rowHeight, Color.rgb(112, 117, 110));
             possPane.getChildren().add(possiblePos);
             this.add(possPane, posRow, posCol);
         }
