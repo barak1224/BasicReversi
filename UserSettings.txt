@@ -1,4 +1,4 @@
-Who starts:BLACK
-Core.Player one color:0x996699ff
-Core.Player two color:0xe6804dff
+Who starts:WHITE
+Core.Player one color:0xffffffff
+Core.Player two color:0x000000ff
 Size board:4

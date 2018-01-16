@@ -15,3 +15,7 @@
     -fx-font-family: Arial;
     -fx-fill: rgb(85,87,83);
 }
+
+body {
+    -fx-background-image: url("MenuBackground.jpg");
+}

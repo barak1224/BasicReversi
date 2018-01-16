@@ -27,6 +27,22 @@ public class GameSettings {
         return whoStarts;
     }
 
+    public int firstPlayerNumber() {
+        if (whoStarts.name().equals(PlayerStart.BLACK.name())) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
+
+    public int secondPlayerNumber() {
+        if (firstPlayerNumber() == 1) {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
+
     public Color getColorPlayerTwo() {
         return colorPlayerTwo;
     }

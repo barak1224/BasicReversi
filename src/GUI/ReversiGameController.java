@@ -2,7 +2,6 @@ package GUI;
 
 import Core.GameFlow;
 import Core.Move;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,18 +9,26 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ReversiGameController implements Initializable, ActionListener {
+    private final static String PLAYER_ONE_POINTS = "First player points: ";
+    private final static String PLAYER_TWO_POINTS = "Second player points: ";
+    private final static String PLAYER_TURN = "Player turn: ";
+    private static final int PLAY = 2;
+    private static final int NO_MOVES = 1;
+    private static final int GAME_OVER = 0;
+
 
     private ReversiBoardController boardController;
     private GameFlow gameFlow;
+    private AlertBox alertBox;
 
     @FXML
     private HBox root;
@@ -32,9 +39,18 @@ public class ReversiGameController implements Initializable, ActionListener {
     @FXML
     private Button quitButton;
 
+    @FXML
+    private Text playerTurn;
+
+    @FXML
+    private Text playerOnePoints;
+
+    @FXML
+    private Text playerTwoPoints;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        alertBox = new AlertBox();
         GameSettings game = IOSettings.read();
         if (game == null) return;
         gameFlow = new GameFlow(game.getSizeBoard());
@@ -45,6 +61,7 @@ public class ReversiGameController implements Initializable, ActionListener {
         boardController.setPrefHeight(400);
         root.getChildren().add(0, boardController);
         boardController.setPossibleMoves(gameFlow.getPossibleMoves());
+        setDetails();
         boardController.draw();
         // listeners...
         root.widthProperty().addListener((observable, oldValue, newValue) -> {
@@ -62,17 +79,36 @@ public class ReversiGameController implements Initializable, ActionListener {
 
     @Override
     public void hitEvent(int row, int col) {
-        boolean shouldContinue;
-        shouldContinue = gameFlow.playOneTurn(row, col);
-        boardController.setPossibleMoves(gameFlow.getPossibleMoves());
+        int status;
+        status = gameFlow.playOneTurn(row, col);
+        List<Move> possibleMoves = gameFlow.getPossibleMoves();
+        boardController.setPossibleMoves(possibleMoves);
+        setDetails();
         boardController.draw();
-        if (!shouldContinue) gameOver();
+        if (status == NO_MOVES) {
+            alertBox.display("No move alert", "You don't have moves, the turn pass to the other player");
+            if (gameFlow.getPossibleMoves().size() == 0) {
+                gameOver();
+            }
+        }
+        if (status == GAME_OVER) gameOver();
+    }
+
+    public void setDetails() {
+        playerOnePoints.setText(PLAYER_ONE_POINTS + gameFlow.getBoard().getPlayerPoints(1));
+        playerTwoPoints.setText(PLAYER_TWO_POINTS + gameFlow.getBoard().getPlayerPoints(2));
     }
 
     private void gameOver() {
-        GameOverBox gameOverBox = new GameOverBox();
-        //TODO SET WHO WINS MESSAGE
-        gameOverBox.display("Winner winner", "You Won");
+        String gameResult = null;
+        switch (gameFlow.getBoard().getWinner()) {
+            case 1: gameResult = "First player won!";
+                break;
+            case 2: gameResult = "Second player wond";
+                break;
+            case 3: gameResult = "It's a tie!";
+        }
+        alertBox.display("Winner winner", gameResult);
         callMenuBack();
     }
 

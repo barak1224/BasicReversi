@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class GameOverBox {
+public class AlertBox {
 
     private Button closeButton;
 
