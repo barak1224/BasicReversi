@@ -17,6 +17,12 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+
+/**
+ * Class in charge of actually running the game, holding references to the GameFlow, the BoardController and the GameSettings.
+ * It created the game, "runs it", and closes it when it's over, going back to the Main Menu.
+ * It implements Initializable because it is a controller, and ActionListener to listen to the BoardController.
+ */
 public class ReversiGameController implements Initializable, ActionListener {
     private final static String FXML_FILENAME = "MenuFXML.fxml";
     private final static String ERROR_MESSAGE_BACK = "Failed going back to menu";
@@ -57,6 +63,9 @@ public class ReversiGameController implements Initializable, ActionListener {
     private Text playerTwoPoints;
 
     @Override
+    /**
+     * Initializes the game with the settings from the file.
+     */
     public void initialize(URL location, ResourceBundle resources) {
         alertBox = new AlertBox();
         GameSettings game = IOSettings.read();
@@ -102,25 +111,37 @@ public class ReversiGameController implements Initializable, ActionListener {
         if (status == GAME_OVER) gameOver();
     }
 
+    /**
+     * Adds the text to show the user data about the game.
+     */
     public void setDetails() {
         playerOnePoints.setText(PLAYER_ONE_POINTS + gameFlow.getBoard().getPlayerPoints(1));
         playerTwoPoints.setText(PLAYER_TWO_POINTS + gameFlow.getBoard().getPlayerPoints(2));
     }
 
+    /**
+     * Deals with finishing the game, telling the user the final state.
+     */
     private void gameOver() {
         String gameResult = null;
         switch (gameFlow.getBoard().getWinner()) {
-            case 1: gameResult = PLAYER_ONE_WINS;
+            case 1:
+                gameResult = PLAYER_ONE_WINS;
                 break;
-            case 2: gameResult = PLAYER_TWO_WINS;
+            case 2:
+                gameResult = PLAYER_TWO_WINS;
                 break;
-            case 3: gameResult = TIE;
+            case 3:
+                gameResult = TIE;
         }
         alertBox.display(WINNER_TITLE, gameResult);
         callMenuBack();
     }
 
     @FXML
+    /**
+     * Method in charge of going back to the main menu when the user clicks the menuButton..
+     */
     private void callMenuBack() {
         try {
             Stage stage = (Stage) menuButton.getScene().getWindow();
@@ -134,6 +155,9 @@ public class ReversiGameController implements Initializable, ActionListener {
     }
 
     @FXML
+    /**
+     * Method in charge of quitting the game when the user click the quitButton.
+     */
     private void quit() {
         Stage stage = (Stage) quitButton.getScene().getWindow();
         stage.close();
