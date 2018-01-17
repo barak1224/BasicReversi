@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameFlow {
+    private static final int PLAY = 2;
+    private static final int NO_MOVES = 1;
+    private static final int GAME_OVER = 0;
+
     private Board board;
     private ClassicLogic logic;
     private Player[] players;
@@ -23,18 +27,25 @@ public class GameFlow {
         currentPlayer = turnManager.nextPlayer();
     }
 
-    public boolean playOneTurn(int row, int col) {
+    public int playOneTurn(int row, int col) {
         ArrayList<Move> possibleMoves = getPossibleMoves();
         Move move = currentPlayer.move(possibleMoves, row, col);
         board.applyMove(move, currentPlayer);
         turnManager.setNoMove(false);
-        // get the relevant data for the next turn
-        currentPlayer = nextPlayer();
+
+        // move on to the next player and check what happens
+        nextPlayer();
         if (getPossibleMoves().isEmpty()) {
             turnManager.setNoMove(true);
-            currentPlayer = nextPlayer();
+            // next player can't move, so go back
+            nextPlayer();
         }
-        return !gameOver();
+        if (gameOver()) {
+            return GAME_OVER;
+        } else if (turnManager.couldNotMove()) {
+            return NO_MOVES;
+        }
+        return PLAY;
     }
 
     private boolean gameOver() {
@@ -49,7 +60,7 @@ public class GameFlow {
         return logic.getPossibleMoves(currentPlayer, board);
     }
 
-    private Player nextPlayer() {
-        return turnManager.nextPlayer();
+    private void nextPlayer() {
+        currentPlayer = turnManager.nextPlayer();
     }
 }

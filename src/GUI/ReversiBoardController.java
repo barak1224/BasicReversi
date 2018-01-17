@@ -2,6 +2,7 @@ package GUI;
 
 import Core.*;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -75,7 +76,11 @@ public class ReversiBoardController extends GridPane implements ActionNotifier {
                     Circle token = new Circle();
                     token.setRadius(radius);
                     token.setFill(currentColor);
-//                    token.setStroke(Color.BLACK);
+                    token.setStroke(Color.BLACK);
+                    DropShadow dropShadow = new DropShadow();
+                    dropShadow.setOffsetY(7);
+                    dropShadow.setOffsetX(-5);
+                    token.setEffect(dropShadow);
                     pane.getChildren().addAll(token);
                     this.add(pane, row, col);
                 }

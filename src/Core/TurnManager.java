@@ -26,4 +26,8 @@ public class TurnManager {
     public boolean noMoreMoves() {
         return (noMoves[0] && noMoves[1]);
     }
+
+    public boolean couldNotMove() {
+        return noMoves[(turns - 1) % 2];
+    }
 }
