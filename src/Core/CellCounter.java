@@ -4,6 +4,9 @@ public class CellCounter {
     private CellColor player1, player2;
     private int[] points;
 
+    /**
+     * Constructor empty
+     */
     public CellCounter() {
         points = new int[2];
         player1 = CellColor.BLACK;
@@ -12,6 +15,9 @@ public class CellCounter {
         points[1] = 2;
     }
 
+    /**
+     * Constructor that initialize with getting values
+     */
     public CellCounter(CellColor player1Color, CellColor player2Color, int pointsP1, int pointsP2) {
         player1 = player1Color;
         player2 = player2Color;
@@ -20,10 +26,18 @@ public class CellCounter {
         points[1] = pointsP2;
     }
 
+    /**
+     * The method getting the points of a player
+     * @param numOfPlayer
+     * @return
+     */
     public int getPoints(int numOfPlayer) {
         return points[numOfPlayer - 1];
     }
 
+    /**
+     * The method change the value
+     */
     public void changeValue(CellColor prev, CellColor current) {
         if (current == player1) {
             points[0] += 1;
@@ -38,6 +52,10 @@ public class CellCounter {
         }
     }
 
+    /**
+     * The method return the winner
+     * @return player number
+     */
     public int getWinner() {
         if (points[0] > points[1]) {
             return 1;
@@ -48,6 +66,10 @@ public class CellCounter {
         }    //tie
     }
 
+    /**
+     * The method return if the game is over
+     * @return true for game over, otherwise false
+     */
     public boolean gameOver(int size) {
         return (points[0] + points[1] == size * size) || (points[0] == 0) || (points[1] == 0);
     }

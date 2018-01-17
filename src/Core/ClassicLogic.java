@@ -5,9 +5,16 @@ import java.util.List;
 
 public class ClassicLogic {
 
+    /**
+     * Constructor
+     */
     public ClassicLogic() {
     }
 
+    /**
+     * Get the directions in which the Player should check for possible Moves.
+     * @return vector<Coordinate *> the list of possible directions to move.
+     */
     private List<Coordinate> getDirections(Coordinate pos, Player player, Board board) {
         List<Coordinate> result = new ArrayList<>();
         Cell cell = board.getCell(pos);
@@ -25,6 +32,10 @@ public class ClassicLogic {
         return result;
     }
 
+    /**
+     * Checks whether the direction is valid. It runs toward the desired direction and checks it as a Turing Machine.
+     * @return boolean - true only if the direction gives any gains for the Move.
+     */
     private boolean validDirection(Coordinate pos, Player player, Coordinate direction, Board board) {
         Coordinate newPos = pos.sum(direction);
         if (!board.contains(newPos)) {
@@ -39,6 +50,10 @@ public class ClassicLogic {
         return true;
     }
 
+    /**
+     * Analizes each empty cell and finds all the possible moves for the Player.
+     * @return list<Move> - the list of possible moves for the Player.
+     */
     public ArrayList<Move> getPossibleMoves(Player player, Board board) {
         ArrayList<Move> moves = new ArrayList<>();
         for (int row = 1; row <= board.getSize(); row++) {
@@ -53,9 +68,5 @@ public class ClassicLogic {
             }
         }
         return moves;
-    }
-
-    public Move getMoveByPosition(Coordinate pos, Player player, Board board) {
-        return new Move(pos, getDirections(pos, player, board));
     }
 }

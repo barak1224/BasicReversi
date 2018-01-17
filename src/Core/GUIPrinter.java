@@ -12,9 +12,10 @@ public class GUIPrinter implements Printer {
     private Color player1Color, player2Color;
     private boolean inTurn;
     private int[] input;
-//    private Core.GameFlow gameFlow;
 
-
+    /**
+     * Constructor
+     */
     public GUIPrinter(Stage stage, Color player1, Color player2) {
         window = new Stage();
         player1Color = player1;
@@ -79,6 +80,9 @@ public class GUIPrinter implements Printer {
         window.show();
     }
 
+    /**
+     * The method add pane
+     */
     private void addPane(int row, int col) {
         StackPane pane = new StackPane();
         
@@ -95,19 +99,5 @@ public class GUIPrinter implements Printer {
 
     @Override
     public void printStream(String output) {
-        System.out.println(output);
-    }
-
-    public void setInTurn(boolean inTurn) {
-        this.inTurn = inTurn;
-    }
-
-    public int[] getInput() {
-        input[0] = 0;
-        input[1] = 0;
-        while (input[0] == 0 || input[1] == 0 ) {
-            //do nothing
-        }
-        return input;
     }
 }
